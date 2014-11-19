@@ -9,7 +9,7 @@ class SubscriptionsController < ApplicationController
     @lunches = [] unless @lunches
     @dinners = @subscription.dinner
     @dinners = [] unless @dinners
-    @tracks = Track.all
+    @tracks  = Track.all
     @preferences = Preference.where(subscription: @subscription)
     @days = DAYS
   end
@@ -27,7 +27,7 @@ class SubscriptionsController < ApplicationController
     subscription.save
 
     subscription.update(subscription_params)
-    
+
     @pref_track_names = params[:preferences] ? params[:preferences] : []
     @old_preferences = Preference.where(subscription: subscription)
     @deleted_preferences = Preference.none
@@ -41,7 +41,7 @@ class SubscriptionsController < ApplicationController
 
     end
 
-    @pref_track_names.each do |name|    
+    @pref_track_names.each do |name|
       track = Track.find_by_name(name)
       Preference.create(subscription: subscription, track: track) unless @old_preferences.where(track: track).any?
     end

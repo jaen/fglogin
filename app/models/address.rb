@@ -2,7 +2,7 @@ class Address < ActiveRecord::Base
   belongs_to :customer
   before_save :populate_email
 
-  def to_s
+  def display_name
     "#{customer}: #{city}"
   end
 

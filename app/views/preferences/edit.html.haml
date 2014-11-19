@@ -1,0 +1,82 @@
+%section#steps
+  .row.text-center
+    .col-md-12
+      .step.food-preferences.active Choose Preferences
+      .arrow< ▸
+      .step.area-preferences Choose Area
+      .arrow< ▸
+      .step.day-preferences Choose Day
+
+%section#food-preferences.active
+  .row
+    .col-lg-12.text-center
+      %h2.section-heading Choose Preferences
+      %h3.section-subheading.text-muted{:style => "margin: 5px 0 30px 0;"} Select a foodie track, but feel free to switch your preferences up to 24 hours before the delivery.
+  .row
+    - Track.all.each do |track|
+      .food-track.col-lg-4{ :data => { :track_id => track.id, :update_url => update_preferences_path } }
+        .track-image
+          .overlay
+            .overlay-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag track.image.thumb, :class => 'img-responsive'
+        .track-description
+          %h4= track.name
+          %p.description= track.description
+          %p.rating
+            - rating = Random.rand(2.0 .. 5.0)
+            = stars_for_rating(rating)
+            = precede '[' do
+              = Random.rand(32..256)
+            = succeed ']' do
+              %i.fa.fa-group
+
+%section#area-preferences
+  .row
+    .col-lg-12.text-center
+      %h2.section-heading Choose Area
+      %h3.section-subheading.text-muted{:style => "margin: 5px 0 30px 0;"} Select an area so we can find delicious restaurants nearby.
+  .row
+    .col-lg-4.col-lg-offset-4
+      = minimal_form_for @area_preferences_form, :url => update_preferences_path do |f|
+        = f.input :zipcode
+        = f.input :email
+        = f.input :phone
+        .btn.btn-submit
+          Next
+
+%section#day-preferences
+  .row
+    .col-lg-12.text-center
+      %h2.section-heading Choose Day
+      %h3.section-subheading.text-muted{:style => "margin: 5px 0 30px 0;"}
+        Select which day of the week you'd like your weekly FoodGem Box!
+        %br
+        Our default times are 12pm and 7pm but you can change it.
+        %br
+        In our beta, we only allow one selection per week per order.
+  .row
+    .col-lg-12.text-center
+      = minimal_form_for @day_preferences_form, :url => update_preferences_path do |f|
+        - days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+        .row.text-center{:style => "padding: 20px 0 50px 0; "}
+          %h3.section-subheading.text-muted{:style => "margin: 5px 0 30px 0;"} Lunch Delivery
+
+          .col-lg-8.col-lg-offset-2.text-center.lunch-day-selection
+            - days.each do |day|
+              .delivery-day{ :data => { :day_name => day.downcase } }
+                = day
+
+
+        .row.text-center{:style => "padding: 20px 0 50px 0; "}
+          %h3.section-subheading.text-muted{:style => "margin: 5px 0 30px 0;"} Dinner Delivery
+
+          .col-lg-8.col-lg-offset-2.text-center.dinner-day-selection
+            - days.each do |day|
+              .delivery-day{ :data => { :day_name => day.downcase } }
+                = day
+
+        .row.text-center{:style => "padding: 20px 0 50px 0; "}
+          .btn.btn-submit{ :disabled => !@day_preferences_form.valid? }
+            Next

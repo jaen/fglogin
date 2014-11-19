@@ -7,15 +7,15 @@ class Customers::RegistrationsController < Devise::RegistrationsController
     @a = 'balbnalbal'
     @address = Address.new()
     super
-    
+
   end
 
   # POST /resource
   def create
     build_resource(sign_up_params)
     id = resource.id
-    @address = Address.new(address_params)
-    @address.customer = resource
+    # @address = Address.new(address_params)
+    # @address.customer = resource
 
 
     resource_saved = resource.save
@@ -25,7 +25,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
       require 'mandrill'
       mandrill = Mandrill::API.new '7RZIKxnlpNkJrGW8sN5Utw'
 
-      if @address.save
+      # if @address.save
         subscription = Subscription.new()
         subscription.customer_id = id
         subscription.save
@@ -37,7 +37,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
           Please contact us at info@foodgem.com with any questions you have.<br><br>
 
           Cheers!</p>",
-                    "text"=>"Congratulations! 
+                    "text"=>"Congratulations!
           You’ve signed up for a subscription with FoodGem. Expect to have some of the most delicious food from the best restaurants in your area!
 
           Please contact us at info@foodgem.com with any questions you have.
@@ -50,8 +50,8 @@ class Customers::RegistrationsController < Devise::RegistrationsController
         }
         sending = mandrill.messages.send message
         puts sending
-      end
-      
+      # end
+
 
 
       if resource.active_for_authentication?
@@ -77,11 +77,11 @@ class Customers::RegistrationsController < Devise::RegistrationsController
     # if resource.save
 
     # super
-    
 
-    
-      
-      
+
+
+
+
 
 
 

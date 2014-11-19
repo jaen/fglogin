@@ -29,6 +29,9 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: [:create, :edit, :update, :new]
 
+  get  'preferences/edit'   => 'preferences#edit', :as => :edit_preferences
+  post 'preferences/update' => 'preferences#update', :as => :update_preferences
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

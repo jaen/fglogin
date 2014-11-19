@@ -19,5 +19,10 @@ module Fglogin
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # this shouldn't be needed : |
+    config.autoload_paths << Rails.root.join('app/uploaders')
+    config.autoload_paths << Rails.root.join('app/services')
+    config.autoload_paths << Rails.root.join('app/forms')
   end
 end

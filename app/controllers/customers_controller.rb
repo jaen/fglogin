@@ -3,21 +3,20 @@ class CustomersController < ApplicationController
   def show
     @customer = current_customer
 
-    @subscription = @customer.subscription
-    @subscription = Subscription.create(customer: @customer) unless @subscription
-    if @subscription
-      @preferences = @subscription.preferences
-      @lunches = @subscription.lunch
-      @dinners = @subscription.dinner
-      @extra_notes = @subscription.extra_notes
-      @lunch_time = @subscription.lunch_time ? @subscription.lunch_time.strftime('%H:%M') : 'time unset'
-      @dinner_time = @subscription.dinner_time ? @subscription.dinner_time.strftime('%H:%M') : 'time unset'
-    end
-    
-    @address = @customer.address
-    @address = Address.create(customer: @customer) unless @address
-    @phone = @address.phone
+    @first_time = ProfileUpdateService.first_profile_update?(@customer)
 
+    # @subscription = @customer.subscription || Subscription.new(:customer => @customer)
 
+    # if @subscription
+    #   @preferences = @subscription.preferences
+    #   @lunches = @subscription.lunch
+    #   @dinners = @subscription.dinner
+    #   @extra_notes = @subscription.extra_notes
+    #   @lunch_time = @subscription.lunch_time ? @subscription.lunch_time.strftime('%H:%M') : 'time unset'
+    #   @dinner_time = @subscription.dinner_time ? @subscription.dinner_time.strftime('%H:%M') : 'time unset'
+    # end
+
+    # @address = @customer.address || Address.new(:customer => @customer)
+    # @phone = @address.phone
   end
 end

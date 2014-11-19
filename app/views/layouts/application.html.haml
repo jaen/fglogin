@@ -1,0 +1,39 @@
+!!!
+%html{:lang => "eng"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    %title FoodGem
+    = stylesheet_link_tag    'application', :media => 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    / Custom Fonts
+    %link{:href => "http://fonts.googleapis.com/css?family=Montserrat:400,700", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Kaushan+Script", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700", :rel => "stylesheet", :type => "text/css"}
+    / HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    / WARNING: Respond.js doesn't work if you view the page via file://
+    /[if lt IE 9]
+      %script{ :src => 'https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' }
+      %script{ :src => 'https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js' }
+    = yield :head
+  %body#page-top{ :class => ['index', *body_css_classes] }
+    - if notice.present?
+      %p.notice= notice
+    - if alert.present?
+      %p.alert= alert
+
+    = render 'layouts/navbar'
+
+    .container.container-body
+      = yield
+
+    = render 'layouts/footer'
+    = params.inspect if Rails.env.development?
+
+    / Plugin JavaScript
+    %script{ :src => 'http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js' }

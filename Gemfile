@@ -5,8 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
-  gem 'sqlite3'   
+  gem 'sqlite3'
 end
+
+gem 'haml-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -24,13 +26,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0',          :group => :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+gem 'spring',        :group => :development
 
 gem 'devise'
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin', :github => 'activeadmin'
 
 group :production do
   gem 'pg'
@@ -45,7 +47,34 @@ gem 'kaminari'
 
 gem 'mandrill-api'
 
-ruby "2.1.2"
+gem 'pry', '~> 0.10.1'
+gem 'pry-doc', '~> 0.6.0'
+gem 'pry-rails'
+
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'awesome_print'
+gem 'byebug', '~> 3.5.1'
+gem 'pry-byebug', '~> 2.0.0'
+gem 'pry-stack_explorer', :github => 'pry/pry-stack_explorer'
+
+gem 'virtus'
+gem 'vanguard'
+
+gem 'simple_form'
+
+gem 'foreman', :github => 'hsume2/foreman'
+
+gem 'puma'
+
+gem 'enumerize'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'bourbon'
+
+ruby '2.1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

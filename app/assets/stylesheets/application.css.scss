@@ -2,4 +2,59 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "agency/agency";
+@import "bourbon";
+
+$brand-yellow: #fed136;
+$brand-red: #e74c3c;
+$brand-grey: #888;
+$brand-grey-light: #eee;
+$brand-orange: #FF9933;
+
 @import "customer";
+@import "preferences";
+
+input, input.form-control {
+    @include transition(color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out);
+
+    background: $brand-grey-light;
+    height: 60px;
+    height: 60px;
+    box-shadow: none;
+    border-color: transparent;
+
+    &:active, &:focus {
+        outline: 0;
+        background: white;
+        box-shadow: none;
+        border-color: $brand-grey;
+    }
+
+    @include placeholder {
+       color: $brand-grey;
+       font-weight: normal;
+       font-style: italic;
+    }
+}
+
+.form-group.has-error {
+    input.form-control {
+        // border-color: $brand-red;
+        border-color: transparent;
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: none;
+            border-color: $brand-grey;
+        }
+    }
+
+    .help-block {
+        color: $brand-red;
+        text-align: left;
+        padding-left: 15px;
+    }
+}
+
+.container.container-body {
+    margin-top: 70px;
+}

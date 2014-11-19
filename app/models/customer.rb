@@ -5,9 +5,10 @@ class Customer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :subscription
-  has_one :address 
+  has_one :address
+  has_many :profile_updates
 
-  def to_s
+  def display_name
     email
   end
 end

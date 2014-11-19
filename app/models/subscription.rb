@@ -6,7 +6,7 @@ class Subscription < ActiveRecord::Base
   serialize :lunch
   serialize :dinner
 
-  def to_s
+  def display_name
     customer.email
   end
 end
