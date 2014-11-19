@@ -51,12 +51,14 @@ gem 'pry', '~> 0.10.1'
 gem 'pry-doc', '~> 0.6.0'
 gem 'pry-rails'
 
-gem 'better_errors'
-gem 'binding_of_caller'
-gem 'awesome_print'
-gem 'byebug', '~> 3.5.1'
-gem 'pry-byebug', '~> 2.0.0'
-gem 'pry-stack_explorer', :github => 'pry/pry-stack_explorer'
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'awesome_print'
+  gem 'byebug', '~> 3.5.1'
+  gem 'pry-byebug', '~> 2.0.0'
+  gem 'pry-stack_explorer', :github => 'pry/pry-stack_explorer'
+end
 
 gem 'virtus'
 gem 'vanguard'

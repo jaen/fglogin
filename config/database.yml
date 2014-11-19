@@ -25,5 +25,4 @@ test:
   database: foodgem-test
 
 production:
-  <<: *default
-  database: foodgem-production
+  url: <%= ENV['DATABASE_URL'] %>
