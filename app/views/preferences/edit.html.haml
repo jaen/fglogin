@@ -1,13 +1,13 @@
 %section#steps
   .row.text-center
     .col-md-12
-      .step.food-preferences.active Choose Preferences
+      .step.food-preferences{ :class => ('active' if @step == 'track') } Choose Preferences
       .arrow< ▸
-      .step.area-preferences Choose Area
+      .step.area-preferences{ :class => ('active' if @step == 'area') } Choose Area
       .arrow< ▸
-      .step.day-preferences Choose Day
+      .step.day-preferences{ :class => ('active' if @step == 'day') } Choose Day
 
-%section#food-preferences.active
+%section#food-preferences{ :class => ('active' if @step == 'track') }
   .row
     .col-lg-12.text-center
       %h2.section-heading Choose Preferences
@@ -31,7 +31,7 @@
             = succeed ']' do
               %i.fa.fa-group
 
-%section#area-preferences
+%section#area-preferences{ :class => ('active' if @step == 'area') }
   .row
     .col-lg-12.text-center
       %h2.section-heading Choose Area
@@ -45,7 +45,7 @@
         .btn.btn-submit
           Next
 
-%section#day-preferences
+%section#day-preferences{ :class => ('active' if @step == 'day') }
   .row
     .col-lg-12.text-center
       %h2.section-heading Choose Day

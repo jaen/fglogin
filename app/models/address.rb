@@ -8,7 +8,7 @@ class Address < ActiveRecord::Base
 
   def populate_email
     if email.blank?
-      self.email = customer.email
+      self.email = (customer && customer.email)
     end
   end
 end

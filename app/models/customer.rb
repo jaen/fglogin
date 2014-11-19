@@ -6,7 +6,7 @@ class Customer < ActiveRecord::Base
 
   has_one :subscription
   has_one :address
-  has_many :profile_updates
+  has_many :profile_updates, :class_name => '::ProfileUpdate'
 
   def display_name
     email

@@ -13,6 +13,80 @@
         Please tell us your preferences so we can send yummy dishes your way!
       %p
         = link_to 'Update my preferences', edit_preferences_path, :class => 'btn btn-primary'
+  - elsif @updating_profile
+    .col-lg-12.text-center
+      %p
+        You're already updating your preferences, we remember where you left of so feel free to carry on!
+      %p
+        = link_to 'Continue updating my preferences', edit_preferences_path, :class => 'btn btn-primary'
   - else
     .col-lg-12
-      Derp
+      %h4
+      %p
+        Upcoming meal:
+        - if @subscription.upcoming_meal.blank?
+          %em Undetermined yet
+        - else
+          = @subscription.upcoming_meal
+      %h3 Your subscription
+      - if @subscription
+        %p
+          Preferred tracks:
+          - if @preferences.empty?
+            %em Unset yet
+          - else
+            - @preferences.each do |pref|
+              = pref.track.name
+              ,
+        %p
+          Lunches:
+          - if @lunches.blank?
+            %em None ordered
+          - else
+            - @lunches.each do |lunch|
+              = lunch.capitalize
+              ,
+          = " @  #{@lunch_time}"
+        %p
+          Dinners:
+          - if @dinners.blank?
+            %em None ordered
+          - else
+            - @dinners.each do |dinner|
+              = dinner.capitalize
+              ,
+          = " @  #{@dinner_time}"
+        %p
+          Extra Notes:
+          - if @extra_notes.blank?
+            %em No notes
+          - else
+            = @extra_notes
+      - else
+        %em No subscription data
+      %h3 Delivery address
+      - if @address
+        = "#{@address.first_name} #{@address.last_name}"
+        %br/
+        %i.fa.fa-phone
+        - if @phone.blank?
+          %em Unprovided
+          \&nbsp &nbsp
+        - else
+          = " #{@phone}"
+          \&nbsp &nbsp
+        %i.fa.fa-envelope
+        - if @address.email.blank?
+          %em Unprovided
+        - else
+          = " #{@address.email}"
+        %br/
+        %br/
+        = "#{@address.street_address} #{@address.suite}"
+        %br/
+        = "#{@address.city} #{@address.state} #{@address.zip}"
+      - else
+        %em No address defined
+
+    %p
+      = link_to 'Update my preferences', edit_preferences_path, :class => 'btn btn-primary'

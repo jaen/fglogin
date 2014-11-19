@@ -13,11 +13,10 @@ $brand-orange: #FF9933;
 @import "customer";
 @import "preferences";
 
-input, input.form-control {
+input:not([type=submit]), input.form-control:not([type=submit]) {
     @include transition(color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out);
 
     background: $brand-grey-light;
-    height: 60px;
     height: 60px;
     box-shadow: none;
     border-color: transparent;
